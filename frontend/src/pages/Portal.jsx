@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import Header from "../components/layout-ui/Header";
 import Button from "../components/form-ui/Button";
 import Table from "../components/Table";
+import Modal from "../components/layout-ui/Modal";
+import ProductModal from "../components/ProductModal";
 
 const Portal = () => {
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const initialValues = useMemo(
+    () => ({
+      name: "",
+      price: 0,
+      description: "",
+      image: "",
+    }),
+    []
+  );
+
   const columns = [
     {
       field: "id",
@@ -59,17 +74,40 @@ const Portal = () => {
       description: "Affordable and efficient product C",
     },
   ];
+
+  const openModal = () => {
+    setShow(true);
+  };
+
+  const addProduct = (values) => {
+    setLoading(true);
+    console.log({ values });
+
+    setTimeout(() => {
+      setLoading(false);
+      setShow(false);
+    }, 5000);
+  };
   return (
     <div className="flex flex-col flex-1">
       <section className="flex flex-1 flex-col gap-4">
         <div className="flex justify-between">
           <h2 className="text-xl font-semibold">Products</h2>
           <div className="flex gap-4">
-            <Button>Add Product</Button>
+            <Button onClick={openModal}>Add Product</Button>
           </div>
         </div>
         <Table columns={columns} rows={rows} />
       </section>
+      {/* Add Product Modal */}
+      <ProductModal
+        show={show}
+        setShow={setShow}
+        initialValues={initialValues}
+        title={`Add New Product`}
+        onSubmit={addProduct}
+        loading={loading}
+      />
     </div>
   );
 };
