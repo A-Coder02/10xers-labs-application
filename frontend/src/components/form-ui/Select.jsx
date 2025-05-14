@@ -9,7 +9,7 @@ const Select = ({ label, name, options }) => {
   return (
     <div>
       <div className="flex flex-col gap-2">
-        <Label name={name}>{children}</Label>
+        <Label name={name}>{label}</Label>
         <select
           {...field} // Spread the field props (value, onChange, onBlur)
           id={name}
