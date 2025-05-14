@@ -4,11 +4,13 @@ import Button from "../components/form-ui/Button";
 import Table from "../components/Table";
 import Modal from "../components/layout-ui/Modal";
 import ProductModal from "../components/ProductModal";
+import RemoveModal from "../components/RemoveModal";
 
 const INITIAL_VALUES = { name: "", price: 0, description: "", image: "" };
 
 const Portal = () => {
   const [show, setShow] = useState(false);
+  const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const [initialValues, setInitialValues] = useState(INITIAL_VALUES);
@@ -42,7 +44,9 @@ const Portal = () => {
       renderCell: (data) => (
         <div className="flex gap-4">
           <Button onClick={() => onClickEditButton(data)}>View</Button>
-          <Button variant="outlined">Remove</Button>
+          <Button variant="outlined" onClick={() => onClickRemoveButton(data)}>
+            Remove
+          </Button>
         </div>
       ),
     },
@@ -83,9 +87,23 @@ const Portal = () => {
     }, 5000);
   };
 
+  const removeProduct = (values) => {
+    setLoading(true);
+    console.log({ values });
+
+    setTimeout(() => {
+      setLoading(false);
+      setShowRemoveModal(false);
+    }, 5000);
+  };
+
   const onClickEditButton = (values) => {
     setInitialValues(values);
     setShow(true);
+  };
+  const onClickRemoveButton = (values) => {
+    setInitialValues(values);
+    setShowRemoveModal(true);
   };
   return (
     <div className="flex flex-col flex-1">
@@ -109,6 +127,16 @@ const Portal = () => {
         title={`${initialValues?.id ? "Update" : "Add"} Product`}
         onSubmit={addProduct}
         loading={loading}
+      />
+      <RemoveModal
+        show={showRemoveModal}
+        initialValues={initialValues}
+        setShow={(bool) => {
+          setShowRemoveModal(bool);
+          setInitialValues(INITIAL_VALUES);
+        }}
+        loading={loading}
+        onSubmit={removeProduct}
       />
     </div>
   );
