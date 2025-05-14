@@ -15,7 +15,7 @@ const TextField = ({ label, name, placeholder, type = "text" }) => {
           {...field} // Spread the field props (value, onChange, onBlur)
           placeholder={placeholder}
           type={type}
-          className={`border rounded-lg px-3 py-2 w-full ${
+          className={`border px-3 py-2 w-full ${
             meta.touched && meta.error ? "border-red-500" : "border-gray-300"
           }`}
         />

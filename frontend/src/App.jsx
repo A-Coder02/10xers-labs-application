@@ -7,7 +7,7 @@ import Portal from "./pages/Portal";
 
 const App = () => {
   return (
-    <div>
+    <div className="px-4 py-3">
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />

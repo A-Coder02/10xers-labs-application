@@ -14,7 +14,7 @@ const Select = ({ label, name, options }) => {
         <select
           {...field} // Spread the field props (value, onChange, onBlur)
           id={name}
-          className={`border rounded-lg px-3 py-2 w-full ${
+          className={`border px-3 py-2 w-full ${
             meta.touched && meta.error ? "border-red-500" : "border-gray-300"
           }`}
         >

@@ -40,7 +40,7 @@ const Register = () => {
         onSubmit={onSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className="flex flex-col gap-4 px-4 py-6 rounded-xl bg-white shadow-lg md:min-w-sm">
+          <Form className="flex flex-col gap-4 px-4 py-6 bg-white shadow-lg md:min-w-sm">
             <h2 className="text-xl font-semibold text-gray-700">Register</h2>
             <TextField
               name="email"
