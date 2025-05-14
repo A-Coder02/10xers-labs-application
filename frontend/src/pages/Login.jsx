@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import TextField from "../components/TextField";
 import Button from "../components/Button";
 import Select from "../components/Select";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   // Validation schema
@@ -14,16 +15,12 @@ const Login = () => {
     password: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
-    role: Yup.string()
-      .oneOf(["ADMIN", "CUSTOMER"], "Select a valid role")
-      .required("Role is required"),
   });
 
   // Initial form values
   const initialValues = {
     email: "",
     password: "",
-    role: "CUSTOMER",
   };
 
   // Form submission handler
@@ -53,14 +50,6 @@ const Login = () => {
               label="Password"
               placeholder={"***"}
             />
-            <Select
-              label="Role"
-              name="role"
-              options={[
-                { value: "ADMIN", label: "Admin" },
-                { value: "CUSTOMER", label: "Customer" },
-              ]}
-            />
 
             <Button
               type="submit"
@@ -69,6 +58,12 @@ const Login = () => {
             >
               Login
             </Button>
+            <p className="text-center mt-6">
+              No Account?
+              <Link to={"/register"} className="underline text-blue-500">
+                Create Account
+              </Link>
+            </p>
           </Form>
         )}
       </Formik>
