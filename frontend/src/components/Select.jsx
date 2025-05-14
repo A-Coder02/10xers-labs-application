@@ -1,5 +1,6 @@
 import { useField } from "formik";
 import React from "react";
+import Label from "./Label";
 
 const Select = ({ label, name, options }) => {
   // Using useField to connect the select input with Formik
@@ -8,9 +9,7 @@ const Select = ({ label, name, options }) => {
   return (
     <div>
       <div className="flex flex-col gap-2">
-        <label htmlFor={name} className="text-slate-800">
-          {label}
-        </label>
+        <Label name={name}>{children}</Label>
         <select
           {...field} // Spread the field props (value, onChange, onBlur)
           id={name}
@@ -25,9 +24,7 @@ const Select = ({ label, name, options }) => {
           ))}
         </select>
       </div>
-      {meta.touched && meta.error && (
-        <span className="text-sm text-red-500">{meta.error}</span>
-      )}
+      {meta.touched && meta.error && <Label error>{meta.error}</Label>}
     </div>
   );
 };
