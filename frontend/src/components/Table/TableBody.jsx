@@ -16,7 +16,7 @@ const TableBody = ({ columns, rows, loading = false }) => {
                   flex: columns.flex || "0",
                 }}
               >
-                {column.renderCell?.(column) || row[column.field]}
+                {column.renderCell?.(row, column) || row[column.field]}
               </div>
             ))}
           </div>

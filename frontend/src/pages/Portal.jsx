@@ -5,19 +5,13 @@ import Table from "../components/Table";
 import Modal from "../components/layout-ui/Modal";
 import ProductModal from "../components/ProductModal";
 
+const INITIAL_VALUES = { name: "", price: 0, description: "", image: "" };
+
 const Portal = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const initialValues = useMemo(
-    () => ({
-      name: "",
-      price: 0,
-      description: "",
-      image: "",
-    }),
-    []
-  );
+  const [initialValues, setInitialValues] = useState(INITIAL_VALUES);
 
   const columns = [
     {
@@ -47,7 +41,7 @@ const Portal = () => {
       flex: 1,
       renderCell: (data) => (
         <div className="flex gap-4">
-          <Button>View</Button>
+          <Button onClick={() => onClickEditButton(data)}>View</Button>
           <Button variant="outlined">Remove</Button>
         </div>
       ),
@@ -88,6 +82,11 @@ const Portal = () => {
       setShow(false);
     }, 5000);
   };
+
+  const onClickEditButton = (values) => {
+    setInitialValues(values);
+    setShow(true);
+  };
   return (
     <div className="flex flex-col flex-1">
       <section className="flex flex-1 flex-col gap-4">
@@ -102,9 +101,12 @@ const Portal = () => {
       {/* Add Product Modal */}
       <ProductModal
         show={show}
-        setShow={setShow}
+        setShow={(bool) => {
+          setShow(bool);
+          setInitialValues(INITIAL_VALUES);
+        }}
         initialValues={initialValues}
-        title={`Add New Product`}
+        title={`${initialValues?.id ? "Update" : "Add"} Product`}
         onSubmit={addProduct}
         loading={loading}
       />

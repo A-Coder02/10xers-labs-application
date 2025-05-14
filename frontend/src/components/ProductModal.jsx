@@ -22,10 +22,12 @@ const ProductModal = ({
   onSubmit,
   loading = false,
 }) => {
+  const isUpdate = initialValues.id ? true : false;
   return (
     <Modal loading={loading} show={show} setShow={setShow} title={title}>
       <div className="p-4">
         <Formik
+          enableReinitialize
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
@@ -58,7 +60,7 @@ const ProductModal = ({
                 />
 
                 <Button type="submit" disabled={loading} isLoading={loading}>
-                  Submit
+                  {isUpdate ? "Made Changes" : "Submit"}
                 </Button>
               </div>
             </Form>
