@@ -2,6 +2,15 @@ import { useField } from "formik";
 import React from "react";
 import Label from "./Label";
 
+/**
+ * A TextareaField component integrated with Formik for form handling.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.label - The label for the textarea field.
+ * @param {string} props.name - The name of the textarea field.
+ * @param {string} [props.placeholder] - Placeholder text for the textarea.
+ * @returns {JSX.Element} The rendered textarea field with label and error message (if any).
+ */
 const TextareaField = ({ label, name, placeholder }) => {
   // Using useField to connect the textarea with Formik
   const [field, meta] = useField(name);

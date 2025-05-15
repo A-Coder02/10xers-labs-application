@@ -1,8 +1,20 @@
 import React from "react";
 
+/**
+ * A customizable button component with support for variants and loading state.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} [props.type="button"] - The button type (e.g., "button", "submit", "reset").
+ * @param {string} [props.variant="contained"] - The button variant, either "contained" or "outlined".
+ * @param {boolean} [props.isLoading=false] - Whether the button shows a loading state.
+ * @param {boolean} [props.disabled=false] - Whether the button is disabled.
+ * @param {React.ReactNode} props.children - The content of the button.
+ * @param {function} [props.onClick] - The click event handler function.
+ * @returns {JSX.Element} The rendered button component.
+ */
 const Button = ({
   type = "button",
-  variant = "contained", // New prop for variant
+  variant = "contained",
   isLoading = false,
   disabled = false,
   children,

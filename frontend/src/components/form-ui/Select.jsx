@@ -2,6 +2,15 @@ import React from "react";
 import { useField } from "formik";
 import Label from "./Label";
 
+/**
+ * A Select component integrated with Formik for form handling.
+ *
+ * @param {Object} props - The properties object.
+ * @param {string} props.label - The label for the select field.
+ * @param {string} props.name - The name of the select field.
+ * @param {Array<{label: string, value: string}>} props.options - An array of option objects with label and value.
+ * @returns {JSX.Element} The rendered select component with label and error message (if any).
+ */
 const Select = ({ label, name, options }) => {
   // Using useField to connect the select input with Formik
   const [field, meta] = useField(name);
