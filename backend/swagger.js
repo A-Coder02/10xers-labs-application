@@ -15,7 +15,7 @@ const options = {
       },
     ],
   },
-  apis: ["./routes/*.js"], // Adjust according to your file structure
+  apis: ["./routes/*.js", "./controllers/*.js"], // Adjust according to your file structure
 };
 
 const swaggerSpecs = swaggerJsdoc(options);
