@@ -1,6 +1,6 @@
 import React from "react";
+// Components
 import Card from "../components/Card";
-import Header from "../components/layout-ui/Header";
 
 const Home = () => {
   const rows = [
@@ -28,6 +28,7 @@ const Home = () => {
   ];
   return (
     <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {/* Mapping fetched data */}
       {rows.map((row) => (
         <Card
           name={row.name}

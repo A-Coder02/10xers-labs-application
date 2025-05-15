@@ -1,8 +1,7 @@
-import React, { useMemo, useState } from "react";
-import Header from "../components/layout-ui/Header";
+import React, { useState } from "react";
+// Components
 import Button from "../components/form-ui/Button";
 import Table from "../components/Table";
-import Modal from "../components/layout-ui/Modal";
 import ProductModal from "../components/ProductModal";
 import RemoveModal from "../components/RemoveModal";
 

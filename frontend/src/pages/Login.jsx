@@ -1,10 +1,11 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+// Components
+import { Formik, Form } from "formik";
 import TextField from "../components/form-ui/TextField";
 import Button from "../components/form-ui/Button";
-import Select from "../components/form-ui/Select";
 import { Link } from "react-router-dom";
+// others
+import * as Yup from "yup";
 
 const Login = () => {
   // Validation schema
@@ -43,14 +44,12 @@ const Login = () => {
               label="Email"
               placeholder={"johndoe@mail.com"}
             />
-
             <TextField
               name="password"
               type="password"
               label="Password"
               placeholder={"***"}
             />
-
             <Button
               type="submit"
               disabled={isSubmitting}
