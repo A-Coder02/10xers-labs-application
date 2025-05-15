@@ -1,5 +1,12 @@
 import React from "react";
 
+/**
+ * The TableHeader component to display column headers.
+ *
+ * @param {Object} props - The properties object.
+ * @param {Array<{label: string, field: string, minWidth?: string, maxWidth?: string, flex?: string}>} [props.columns=[]] - The columns to be displayed as headers.
+ * @returns {JSX.Element} The rendered table header with column names.
+ */
 const TableHeader = ({ columns = [] }) => {
   return (
     <div className="flex flex-col gap-4">
@@ -7,12 +14,12 @@ const TableHeader = ({ columns = [] }) => {
         <div className="flex">
           {columns.map((column, index) => (
             <div
-              key={columns.field}
+              key={column.field || index}
               className="col-span-1"
               style={{
                 minWidth: column.minWidth || "150px",
                 maxWidth: column.maxWidth || "auto",
-                flex: columns.flex || "0",
+                flex: column.flex || "0",
               }}
             >
               {column.label}

@@ -2,6 +2,15 @@ import React from "react";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 
+/**
+ * A Table component to display data in a structured format.
+ *
+ * @param {Object} props - The properties object.
+ * @param {boolean} [props.loading=false] - Indicates if data is being loaded.
+ * @param {Array<Object>} [props.rows=[]] - The data to be displayed in table rows.
+ * @param {Array<{label: string}>} [props.columns=[]] - The table columns to be displayed.
+ * @returns {JSX.Element} The rendered table component with a header and body.
+ */
 const Table = ({
   loading = false,
   rows = [],
