@@ -1,6 +1,26 @@
 const supabase = require("../supabase");
 
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Auth APIs
+ */
+
 const createProduct = async (req, res) => {
+  /* #swagger.tags = ['Products']
+    #swagger.parameters['body'] = {
+        in: 'body',
+        schema: {
+            name: "",
+            img_url: "",
+            description: "",
+            price: 0,
+            user_id: ""
+        }
+    }
+        */
+
   const { name, img_url, description, price, user_id } = req.body;
   if (!name || !price) {
     return res
@@ -16,22 +36,20 @@ const createProduct = async (req, res) => {
   if (error) {
     return res.status(500).json({ data: null, error: error.message });
   }
-  res.status(201).json({ data, error: null });
+  res
+    .status(201)
+    .json({ data, message: "Product created successfully.", error: null });
 };
 
 const getProducts = async (req, res) => {
-  try {
-    // Extract query parameters for pagination and filtering
-    const { page = 1, limit = 10, email } = req.query;
+  /* #swagger.tags = ['Products'] */
 
-    // Convert page and limit to numbers
+  try {
+    const { page = 1, limit = 10, email } = req.query;
     const currentPage = parseInt(page, 10);
     const pageSize = parseInt(limit, 10);
-
-    // Calculate offset for pagination
     const offset = (currentPage - 1) * pageSize;
 
-    // Supabase query to get the total count of products (with optional email filter)
     let countQuery = supabase
       .from("products")
       .select("id, user_id(id, email)", { count: "exact", head: true });
@@ -45,10 +63,8 @@ const getProducts = async (req, res) => {
       return res.status(500).json({ data: null, error: countError.message });
     }
 
-    // Calculate total pages
     const totalPages = Math.ceil(count / pageSize);
 
-    // Supabase query to fetch products with optional email filter and pagination
     let query = supabase
       .from("products")
       .select("id, name, img_url, description, price, user_id(id, email)")
@@ -64,9 +80,9 @@ const getProducts = async (req, res) => {
       return res.status(500).json({ data: null, error: error.message });
     }
 
-    // Respond with paginated data and metadata
     res.status(200).json({
       data,
+      message: "Products retrieved successfully.",
       pagination: {
         page: currentPage,
         limit: pageSize,
@@ -91,7 +107,9 @@ const getProductById = async (req, res) => {
   if (error) {
     return res.status(404).json({ data: null, error: error.message });
   }
-  res.status(200).json({ data, error: null });
+  res
+    .status(200)
+    .json({ data, message: "Product retrieved successfully.", error: null });
 };
 
 const updateProduct = async (req, res) => {
@@ -107,7 +125,9 @@ const updateProduct = async (req, res) => {
   if (error) {
     return res.status(500).json({ data: null, error: error.message });
   }
-  res.status(200).json({ data, error: null });
+  res
+    .status(200)
+    .json({ data, message: "Product updated successfully.", error: null });
 };
 
 const deleteProduct = async (req, res) => {

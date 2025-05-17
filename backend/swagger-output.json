@@ -136,6 +136,9 @@
     },
     "/products/": {
       "get": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -164,6 +167,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -173,19 +179,24 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": ""
                 },
                 "img_url": {
-                  "example": "any"
+                  "type": "string",
+                  "example": ""
                 },
                 "description": {
-                  "example": "any"
+                  "type": "string",
+                  "example": ""
                 },
                 "price": {
-                  "example": "any"
+                  "type": "number",
+                  "example": 0
                 },
                 "user_id": {
-                  "example": "any"
+                  "type": "string",
+                  "example": ""
                 }
               }
             }
@@ -206,6 +217,9 @@
     },
     "/products/{id}": {
       "get": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -225,6 +239,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
@@ -240,16 +257,24 @@
               "type": "object",
               "properties": {
                 "name": {
-                  "example": "any"
+                  "type": "string",
+                  "example": ""
                 },
                 "img_url": {
-                  "example": "any"
+                  "type": "string",
+                  "example": ""
                 },
                 "description": {
-                  "example": "any"
+                  "type": "string",
+                  "example": ""
                 },
                 "price": {
-                  "example": "any"
+                  "type": "number",
+                  "example": 0
+                },
+                "user_id": {
+                  "type": "string",
+                  "example": ""
                 }
               }
             }
@@ -265,6 +290,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Products"
+        ],
         "description": "",
         "parameters": [
           {
