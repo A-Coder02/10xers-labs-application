@@ -28,6 +28,7 @@ const TextField = ({ label, name, placeholder, type = "text" }) => {
         {/* The input element with Formik integration */}
         <input
           {...field} // Spread all Formik field props (value, onChange, onBlur, etc.)
+          id={name}
           placeholder={placeholder}
           type={type} // Dynamic input type (text, email, password, etc.)
           // Dynamic className that shows red border when there's an error

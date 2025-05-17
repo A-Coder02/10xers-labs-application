@@ -33,7 +33,7 @@ const Register = () => {
   const initialValues = {
     email: "",
     password: "",
-    role: "user",
+    role: "",
   };
 
   // Form submission handler
@@ -84,6 +84,7 @@ const Register = () => {
               label="Role"
               name="role"
               options={[
+                { value: "", label: "Select role" },
                 { value: "admin", label: "Admin" },
                 { value: "user", label: "User" },
               ]}

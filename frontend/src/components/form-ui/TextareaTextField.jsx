@@ -21,6 +21,7 @@ const TextareaField = ({ label, name, placeholder }) => {
         <Label name={name}>{label}</Label>
         <textarea
           {...field} // Spread the field props (value, onChange, onBlur)
+          id={name}
           placeholder={placeholder}
           className={`border px-3 py-2 w-full resize-none h-24 ${
             meta.touched && meta.error ? "border-red-500" : "border-gray-300"
