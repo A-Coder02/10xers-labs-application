@@ -3,19 +3,20 @@ import React from "react";
 import Card from "../components/Card";
 import useProducts from "../hooks/useProducts";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useSelector } from "react-redux";
 
 const Home = () => {
-  const ctx = useSelector((state) => state.auth);
   const { list, loading, hasMore, loadMore } = useProducts();
-  console.log({ hasMore, loadMore });
 
   return (
     <section className=" flex flex-col p-4 ">
       <h1 className="font-medium mb-4">
         Products For You {loading && "(Loading...)"}
       </h1>
-      <div className="overflow-auto h-[calc(100vh-11.5rem)]" id="scrollableDiv">
+      <div
+        className="overflow-auto h-[calc(100vh-11.5rem)]"
+        data-testid="scrollableDiv"
+        id="scrollableDiv"
+      >
         <InfiniteScroll
           dataLength={list.length} // This is important field to render the next data
           next={loadMore} // Function to load more data

@@ -20,48 +20,54 @@ const usePortal = () => {
 
   const [initialValues, setInitialValues] = useState(INITIAL_VALUES);
 
-  const columns = [
-    {
-      field: "id",
-      label: "ID",
-      renderCell: (data) => `#${data.id}`,
-    },
-    {
-      field: "image",
-      label: "Image",
-      minWidth: "300px",
-      renderCell: (data) => (
-        <img
-          src={data.img_url}
-          className="h-48 aspect-square object-contain"
-          alt="thumbnail"
-        />
-      ),
-    },
-    {
-      field: "name",
-      label: "Name",
-      minWidth: "150px",
-    },
-    {
-      field: "description",
-      label: "Description",
-      minWidth: "300px",
-    },
-    {
-      field: "action",
-      label: "Action",
-      flex: 1,
-      renderCell: (data) => (
-        <div className="flex gap-4">
-          <Button onClick={() => onClickEditButton(data)}>Update</Button>
-          <Button variant="outlined" onClick={() => onClickRemoveButton(data)}>
-            Remove
-          </Button>
-        </div>
-      ),
-    },
-  ];
+  const columns = useMemo(
+    () => [
+      {
+        field: "id",
+        label: "ID",
+        renderCell: (data) => `#${data.id}`,
+      },
+      {
+        field: "image",
+        label: "Image",
+        minWidth: "300px",
+        renderCell: (data) => (
+          <img
+            src={data.img_url}
+            className="h-48 aspect-square object-contain"
+            alt="thumbnail"
+          />
+        ),
+      },
+      {
+        field: "name",
+        label: "Name",
+        minWidth: "150px",
+      },
+      {
+        field: "description",
+        label: "Description",
+        minWidth: "300px",
+      },
+      {
+        field: "action",
+        label: "Action",
+        flex: 1,
+        renderCell: (data) => (
+          <div className="flex gap-4">
+            <Button onClick={() => onClickEditButton(data)}>Update</Button>
+            <Button
+              variant="outlined"
+              onClick={() => onClickRemoveButton(data)}
+            >
+              Remove
+            </Button>
+          </div>
+        ),
+      },
+    ],
+    []
+  );
 
   // Table states
 
