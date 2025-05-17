@@ -150,7 +150,7 @@ const usePortal = () => {
     try {
       setLoading(true);
       const response = await ProductsService.remove(values.id);
-      toast.success(response?.message);
+      toast.error(response.data.message);
       fetchProducts(pagination.page);
     } catch (error) {
       console.log("error: ", error);

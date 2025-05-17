@@ -31,9 +31,9 @@ const put = async (body, id) => {
   }
 };
 
-const remove = async (body, id) => {
+const remove = async (id) => {
   try {
-    const response = await axios.delete(`${productsUrl}/${id}`, body);
+    const response = await axios.delete(`${productsUrl}/${id}`);
     return response.data;
   } catch (error) {
     toast.error(error.message || "Something went wrong");
