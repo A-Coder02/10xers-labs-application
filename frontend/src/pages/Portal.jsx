@@ -18,6 +18,7 @@ const Portal = () => {
     loading,
     initialValues,
     addProduct,
+    editProduct,
     setShowProductModal,
     showRemoveModal,
     setShowRemoveModal,
@@ -54,7 +55,7 @@ const Portal = () => {
         }}
         initialValues={initialValues}
         title={`${initialValues?.id ? "Update" : "Add"} Product`}
-        onSubmit={addProduct}
+        onSubmit={initialValues?.id ? editProduct : addProduct}
         loading={loading}
       />
       <RemoveModal

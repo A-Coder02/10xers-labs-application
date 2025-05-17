@@ -26,7 +26,13 @@ const usePortal = () => {
       field: "image",
       label: "Image",
       minWidth: "300px",
-      renderCell: (data) => <img src={data.image} alt="thumbnail" />,
+      renderCell: (data) => (
+        <img
+          src={data.img_url}
+          className="h-48 aspect-square object-contain"
+          alt="thumbnail"
+        />
+      ),
     },
     {
       field: "name",
@@ -50,27 +56,6 @@ const usePortal = () => {
           </Button>
         </div>
       ),
-    },
-  ];
-
-  const _rows = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/50",
-      name: "Product A",
-      description: "High-quality product A",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/50",
-      name: "Product B",
-      description: "Durable and reliable product B",
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/50",
-      name: "Product C",
-      description: "Affordable and efficient product C",
     },
   ];
 
@@ -127,26 +112,56 @@ const usePortal = () => {
     setShow(true);
   };
 
-  const addProduct = (values) => {
-    setLoading(true);
-
-    setTimeout(() => {
+  const addProduct = async (values) => {
+    try {
+      const data = values;
+      data.img_url = data.image;
+      delete data.image;
+      setLoading(true);
+      const response = await ProductsService.post(values);
+      toast.success(response?.message);
+      fetchProducts(pagination.page);
+    } catch (error) {
+      console.log("error: ", error);
+    } finally {
       setLoading(false);
       setShow(false);
-    }, 5000);
+    }
   };
 
-  const removeProduct = (values) => {
-    setLoading(true);
+  const editProduct = async (values) => {
+    try {
+      const data = values;
+      data.img_url = data.image;
+      delete data.image;
+      setLoading(true);
+      const response = await ProductsService.put(data, values.id);
+      toast.success(response?.message);
+      fetchProducts(pagination.page);
+    } catch (error) {
+      console.log("error: ", error);
+    } finally {
+      setLoading(false);
+      setShow(false);
+    }
+  };
 
-    setTimeout(() => {
+  const removeProduct = async (values) => {
+    try {
+      setLoading(true);
+      const response = await ProductsService.remove(values.id);
+      toast.success(response?.message);
+      fetchProducts(pagination.page);
+    } catch (error) {
+      console.log("error: ", error);
+    } finally {
       setLoading(false);
       setShowRemoveModal(false);
-    }, 5000);
+    }
   };
 
   const onClickEditButton = (values) => {
-    setInitialValues(values);
+    setInitialValues({ ...values, image: values.img_url });
     setShow(true);
   };
   const onClickRemoveButton = (values) => {
@@ -173,6 +188,7 @@ const usePortal = () => {
     },
     show,
     addProduct,
+    editProduct,
     loading,
     removeProduct,
   };

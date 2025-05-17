@@ -13,8 +13,38 @@ const getList = async ({ page, limit }) => {
   }
 };
 
+const post = async (body) => {
+  try {
+    const response = await axios.post(productsUrl, body);
+    return response.data;
+  } catch (error) {
+    toast.error(error.message || "Something went wrong");
+  }
+};
+
+const put = async (body, id) => {
+  try {
+    const response = await axios.put(`${productsUrl}/${id}`, body);
+    return response.data;
+  } catch (error) {
+    toast.error(error.message || "Something went wrong");
+  }
+};
+
+const remove = async (body, id) => {
+  try {
+    const response = await axios.delete(`${productsUrl}/${id}`, body);
+    return response.data;
+  } catch (error) {
+    toast.error(error.message || "Something went wrong");
+  }
+};
+
 const ProductsService = {
   getList,
+  post,
+  put,
+  remove,
 };
 
 export default ProductsService;
