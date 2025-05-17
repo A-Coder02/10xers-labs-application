@@ -4,106 +4,28 @@ import Button from "../components/form-ui/Button";
 import Table from "../components/Table";
 import ProductModal from "../components/ProductModal";
 import RemoveModal from "../components/RemoveModal";
-
-const INITIAL_VALUES = { name: "", price: 0, description: "", image: "" };
+import usePortal from "../hooks/usePortal.jsx";
 
 const Portal = () => {
-  const [show, setShow] = useState(false);
-  const [showRemoveModal, setShowRemoveModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const [initialValues, setInitialValues] = useState(INITIAL_VALUES);
-
-  const columns = [
-    {
-      field: "id",
-      label: "ID",
-      renderCell: (data) => `#${data.id}`,
-    },
-    {
-      field: "image",
-      label: "Image",
-      minWidth: "300px",
-      renderCell: (data) => <img src={data.image} alt="thumbnail" />,
-    },
-    {
-      field: "name",
-      label: "Name",
-      minWidth: "150px",
-    },
-    {
-      field: "description",
-      label: "Description",
-      minWidth: "300px",
-    },
-    {
-      field: "action",
-      label: "Action",
-      flex: 1,
-      renderCell: (data) => (
-        <div className="flex gap-4">
-          <Button onClick={() => onClickEditButton(data)}>View</Button>
-          <Button variant="outlined" onClick={() => onClickRemoveButton(data)}>
-            Remove
-          </Button>
-        </div>
-      ),
-    },
-  ];
-
-  const rows = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/50",
-      name: "Product A",
-      description: "High-quality product A",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/50",
-      name: "Product B",
-      description: "Durable and reliable product B",
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/50",
-      name: "Product C",
-      description: "Affordable and efficient product C",
-    },
-  ];
-
-  const openModal = () => {
-    setShow(true);
-  };
-
-  const addProduct = (values) => {
-    setLoading(true);
-    console.log({ values });
-
-    setTimeout(() => {
-      setLoading(false);
-      setShow(false);
-    }, 5000);
-  };
-
-  const removeProduct = (values) => {
-    setLoading(true);
-    console.log({ values });
-
-    setTimeout(() => {
-      setLoading(false);
-      setShowRemoveModal(false);
-    }, 5000);
-  };
-
-  const onClickEditButton = (values) => {
-    setInitialValues(values);
-    setShow(true);
-  };
-  const onClickRemoveButton = (values) => {
-    setInitialValues(values);
-    setShowRemoveModal(true);
-  };
+  const {
+    // Table
+    columns,
+    rows,
+    loadingRows,
+    // Product Form states
+    show,
+    openModal,
+    loading,
+    initialValues,
+    addProduct,
+    setShowProductModal,
+    showRemoveModal,
+    setShowRemoveModal,
+    removeProduct,
+    pagination,
+    setPagination,
+    onPageChange,
+  } = usePortal();
   return (
     <div className="flex flex-col flex-1">
       <section className="flex flex-1 flex-col gap-4">
@@ -113,14 +35,22 @@ const Portal = () => {
             <Button onClick={openModal}>Add Product</Button>
           </div>
         </div>
-        <Table columns={columns} rows={rows} />
+        <Table
+          columns={columns}
+          rows={rows}
+          loading={loadingRows}
+          pagination={pagination}
+          setPagination={setPagination}
+          onPageChange={onPageChange}
+        />
       </section>
       {/* Add Product Modal */}
       <ProductModal
         show={show}
         setShow={(bool) => {
-          setShow(bool);
-          setInitialValues(INITIAL_VALUES);
+          // setShow(bool);
+          // setInitialValues(INITIAL_VALUES);
+          setShowProductModal(bool);
         }}
         initialValues={initialValues}
         title={`${initialValues?.id ? "Update" : "Add"} Product`}
@@ -132,7 +62,6 @@ const Portal = () => {
         initialValues={initialValues}
         setShow={(bool) => {
           setShowRemoveModal(bool);
-          setInitialValues(INITIAL_VALUES);
         }}
         loading={loading}
         onSubmit={removeProduct}

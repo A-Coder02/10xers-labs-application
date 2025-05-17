@@ -10,7 +10,9 @@ const Home = () => {
 
   return (
     <section className=" flex flex-col p-4 ">
-      <h1 className="font-medium mb-4">Products For You</h1>
+      <h1 className="font-medium mb-4">
+        Products For You {loading && "(Loading...)"}
+      </h1>
       <div className="overflow-auto h-[calc(100vh-11.5rem)]" id="scrollableDiv">
         <InfiniteScroll
           dataLength={list.length} // This is important field to render the next data

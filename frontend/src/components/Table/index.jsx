@@ -1,6 +1,7 @@
 import React from "react";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
+import Pagination from "./Pagination";
 
 /**
  * A Table component to display data in a structured format.
@@ -15,17 +16,29 @@ const Table = ({
   loading = false,
   rows = [],
   columns = [{ label: "Add Columns" }],
+  pagination = null,
+  setPagination = () => {},
+  onPageChange = () => {},
 }) => {
   return (
     <div className="flex-1 flex flex-col gap-2">
       <TableHeader columns={columns} />
-      {loading ? (
-        <p className="text-slate-600 pt-6 text-center font-medium text-lg">
-          Loading Data....
-        </p>
-      ) : (
-        <TableBody columns={columns} rows={rows} loading={loading} />
-      )}
+      <div className="flex-1">
+        {loading ? (
+          <p className="text-slate-600 pt-6 text-center font-medium text-lg">
+            Loading Data....
+          </p>
+        ) : (
+          <TableBody columns={columns} rows={rows} loading={loading} />
+        )}
+      </div>
+
+      <Pagination
+        pagination={pagination}
+        setPagination={setPagination}
+        loading={loading}
+        onPageChange={onPageChange}
+      />
     </div>
   );
 };

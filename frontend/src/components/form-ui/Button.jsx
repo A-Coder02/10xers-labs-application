@@ -40,7 +40,7 @@ const Button = ({
       disabled={disabled || isLoading}
       className={classes}
     >
-      {isLoading ? "Loading..." : children}
+      {children}
     </button>
   );
 };

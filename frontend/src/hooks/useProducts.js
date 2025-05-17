@@ -15,7 +15,7 @@ const useProducts = () => {
   });
 
   // Fetch products based on the current page
-  const fetchProducts = async (page) => {
+  const fetchProducts = async (page, isFirstTime) => {
     setLoading(true);
     try {
       const response = await ProductsService.getList({
@@ -24,7 +24,8 @@ const useProducts = () => {
       });
 
       // Append new products to the existing list
-      setRows((prev) => [...prev, ...response.data]);
+      if (isFirstTime) setRows(response.data);
+      else setRows((prev) => [...prev, ...response.data]);
       console.log({
         page: page,
         totalItems: response.pagination.totalItems,
@@ -49,7 +50,7 @@ const useProducts = () => {
 
   // Initial load
   useEffect(() => {
-    fetchProducts(1);
+    fetchProducts(1, true);
   }, []);
 
   // Load more products
