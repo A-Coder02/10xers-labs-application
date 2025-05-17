@@ -30,11 +30,12 @@ axiosInstance.interceptors.response.use(
     // Handle response errors
     if (error.response.status === 401) {
       // Handle unauthorized error
-      toast.error("Token Expired, redirecting to Login screen");
-      const interval = setInterval(() => {
+      if (location != "/login") {
         location = "/login";
-        clearInterval(interval);
-      }, 3000);
+        const interval = setInterval(() => {
+          clearInterval(interval);
+        }, 3000);
+      }
 
       // Redirect to login page
     }

@@ -14,7 +14,7 @@ const usePortal = () => {
   const user = auth?.user?.[0] || auth?.user || {};
 
   const INITIAL_VALUES = useMemo(
-    () => ({ name: "", price: 0, description: "", image: "" }),
+    () => ({ name: "", price: null, description: "", image: "" }),
     []
   );
 
@@ -74,13 +74,13 @@ const usePortal = () => {
     totalPages: 1,
   });
   // Fetch products based on the current page
-  const fetchProducts = async (page, isFirstTime) => {
+  const fetchProducts = async (page, userId) => {
     setLoadingRows(true);
     try {
       const response = await ProductsService.getList({
         page,
         limit: pagination.limit,
-        user_id: user?.id,
+        id: user?.id || userId,
       });
 
       // Append new products to the existing list
@@ -106,7 +106,7 @@ const usePortal = () => {
   // Initial load
   useEffect(() => {
     if (typeof user.id === "string") {
-      fetchProducts(1);
+      fetchProducts(1, user.id);
       console.log("user_id exists", user.id);
     }
   }, [user]);
@@ -125,8 +125,9 @@ const usePortal = () => {
       const data = values;
       data.img_url = data.image;
       delete data.image;
+      data.user_id = user.id;
       setLoading(true);
-      const response = await ProductsService.post(values);
+      const response = await ProductsService.post(data);
       toast.success(response?.message);
       fetchProducts(pagination.page);
     } catch (error) {
@@ -134,6 +135,7 @@ const usePortal = () => {
     } finally {
       setLoading(false);
       setShow(false);
+      setInitialValues(INITIAL_VALUES);
     }
   };
 
@@ -142,6 +144,8 @@ const usePortal = () => {
       const data = values;
       data.img_url = data.image;
       delete data.image;
+      data.user_id = user.id;
+
       setLoading(true);
       const response = await ProductsService.put(data, values.id);
       toast.success(response?.message);
@@ -151,6 +155,7 @@ const usePortal = () => {
     } finally {
       setLoading(false);
       setShow(false);
+      setInitialValues(INITIAL_VALUES);
     }
   };
 
@@ -159,7 +164,8 @@ const usePortal = () => {
       setLoading(true);
       const response = await ProductsService.remove(values.id);
       toast.success(response.data.message);
-      fetchProducts(pagination.page);
+      if (rows.length === 1) fetchProducts(pagination.page - 1);
+      else fetchProducts(pagination.page);
     } catch (error) {
       console.log("error: ", error);
     } finally {

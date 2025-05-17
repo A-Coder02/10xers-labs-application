@@ -24,7 +24,7 @@ const Pagination = ({ loading, pagination, onPageChange }) => {
           isLoading={loading}
           variant="contained"
           size="sm"
-          disabled={page === totalPages}
+          disabled={page === totalPages || !totalPages}
           onClick={() => {
             onPageChange(page + 1);
 

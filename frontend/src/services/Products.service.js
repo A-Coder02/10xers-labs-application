@@ -9,6 +9,8 @@ const getList = async ({ page, limit, id }) => {
     limit,
   };
   if (id) params.id = id;
+
+  console.log({ id });
   try {
     const response = await axiosInstance.get(`${productsUrl}`, {
       params,
