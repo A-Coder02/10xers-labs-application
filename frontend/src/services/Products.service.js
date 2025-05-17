@@ -2,11 +2,16 @@ import axios from "axios";
 import { productsUrl } from "../utils/urls";
 import { toast } from "react-toastify";
 
-const getList = async ({ page, limit }) => {
+const getList = async ({ page, limit, email }) => {
+  const params = {
+    page,
+    limit,
+  };
+  if (email) params.email = email;
   try {
-    const response = await axios.get(
-      `${productsUrl}?page=${page}&limit=${limit}`
-    );
+    const response = await axios.get(`${productsUrl}`, {
+      params,
+    });
     return response.data;
   } catch (error) {
     toast.error(error.message || "Something went wrong");

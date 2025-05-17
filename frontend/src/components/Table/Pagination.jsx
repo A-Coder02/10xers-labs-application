@@ -5,7 +5,7 @@ const Pagination = ({ loading, pagination, onPageChange }) => {
   const { page, totalPages } = pagination;
   if (pagination)
     return (
-      <div className=" py-4 flex gap-4 justify-end items-center sticky bottom-[-1rem] bg-white border-t border-t-slate-500">
+      <div className="py-4 px-2 flex gap-4 justify-end items-center sticky bottom-0 bg-white border-t border-t-slate-500">
         <p>
           {page} of {totalPages}
         </p>

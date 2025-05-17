@@ -3,28 +3,45 @@ import Button from "../form-ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "./Modal";
 import { clearAuth } from "../../store/auth.slice";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
-  const [show, setShow] = useState(false);
   console.log({ auth });
+  const [show, setShow] = useState(false);
+  const location = useLocation();
   const user = auth?.user?.[0] || auth?.user || {};
+  const isAdmin = user?.role === "admin";
   const logoutHandler = () => {
     dispatch(clearAuth());
     navigate("/login");
   };
 
   return (
-    <header className="flex gap-4 items-center border-b border-b-slate-400 pb-3">
-      <div className="font-medium text-2xl mr-auto">Brand.</div>
+    <header className="flex gap-4 items-center sticky top-0 z-50 py-2 px-4 bg-white border-b border-b-slate-400 pb-3">
+      <div
+        className="font-medium text-2xl mr-auto cursor-pointer"
+        onClick={() => navigate("/")}
+      >
+        Brand.
+      </div>
       <div className="text-slate-800">
         Hi <span className="font-medium">{user.email}!</span>
       </div>
+      {isAdmin && (
+        <Button size="sm" onClick={() => navigate("/portal")}>
+          Go to Portal
+        </Button>
+      )}
+      {location.pathname === "/portal" && (
+        <Button size="sm" onClick={() => navigate("/")}>
+          Home
+        </Button>
+      )}
 
-      <Button onClick={() => setShow(true)} variant="outlined">
+      <Button size="sm" onClick={() => setShow(true)} variant="outlined">
         Logout
       </Button>
 

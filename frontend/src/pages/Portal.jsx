@@ -27,10 +27,11 @@ const Portal = () => {
     setPagination,
     onPageChange,
   } = usePortal();
+
   return (
     <div className="flex flex-col flex-1">
-      <section className="flex flex-1 flex-col gap-4">
-        <div className="flex justify-between">
+      <section className="flex flex-1 flex-col gap-4 relative">
+        <div className="flex justify-between sticky top-0">
           <h2 className="text-xl font-semibold">Products</h2>
           <div className="flex gap-4">
             <Button onClick={openModal}>Add Product</Button>

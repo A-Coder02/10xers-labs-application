@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 const App = () => {
   return (
     <Provider store={store}>
-      <div className="px-4 py-3 h-screen overflow-auto">
+      <div className="h-screen overflow-auto">
         <Router>
           <Routes>
             {/* Public Routes */}

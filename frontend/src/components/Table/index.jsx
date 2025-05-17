@@ -21,16 +21,19 @@ const Table = ({
   onPageChange = () => {},
 }) => {
   return (
-    <div className="flex-1 flex flex-col gap-2">
+    <div className="flex-1 flex flex-col relative">
       <TableHeader columns={columns} />
-      <div className="flex-1">
-        {loading ? (
-          <p className="text-slate-600 pt-6 text-center font-medium text-lg">
-            Loading Data....
-          </p>
-        ) : (
-          <TableBody columns={columns} rows={rows} loading={loading} />
-        )}
+      <div className="flex-1 relative py-2">
+        <div className="">
+          {loading && (
+            <div className="absolute bg-[rgba(0,0,0,0.4)] w-full h-full top-0 left-0">
+              <p className="text-white pt-6 text-center font-medium text-lg w-full absolute top-[5rem]">
+                Loading Data....
+              </p>
+            </div>
+          )}
+        </div>
+        <TableBody columns={columns} rows={rows} loading={loading} />
       </div>
 
       <Pagination

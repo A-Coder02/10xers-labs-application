@@ -19,7 +19,7 @@ app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 // routes
 app.use("/hello", helloRouter);
 app.use("/auth", authRouter);
-// app.use(authMiddleware);
+app.use(authMiddleware);
 app.use("/products", productRouter);
 
 const PORT = process.env.PORT;

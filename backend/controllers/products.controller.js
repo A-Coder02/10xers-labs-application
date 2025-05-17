@@ -52,7 +52,7 @@ const getProducts = async (req, res) => {
 
     let countQuery = supabase
       .from("products")
-      .select("id, user_id(id, email)", { count: "exact", head: true });
+      .select("*, user_id(id, email)", { count: "exact", head: true });
 
     if (email) {
       countQuery = countQuery.eq("user_id.email", email);
@@ -67,11 +67,16 @@ const getProducts = async (req, res) => {
 
     let query = supabase
       .from("products")
-      .select("id, name, img_url, description, price, user_id(id, email)")
+      .select("id, name, img_url, description, price, user_id")
       .range(offset, offset + pageSize - 1);
 
     if (email) {
-      query = query.eq("user_id.email", email);
+      const userQuery = await supabase
+        .from("users")
+        .select("id")
+        .eq("email", email)
+        .single();
+      query = query.eq("user_id", userQuery.data.id);
     }
 
     const { data, error } = await query;

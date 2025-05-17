@@ -33,7 +33,7 @@ const Modal = ({ show, setShow, title, children, loading = false }) => {
           {title && <h2 className="text-xl font-semibold">{title}</h2>}
           {/* Close button */}
           <button
-            className="text-blue-500 hover:text-blue-700 ml-auto focus:outline-none"
+            className="text-blue-500 hover:text-blue-700 cursor-pointer ml-auto focus:outline-none"
             onClick={() => !loading && setShow(false)}
             disabled={loading}
             aria-label="Close modal"

@@ -2,12 +2,18 @@ import React, { useEffect, useMemo, useState } from "react";
 import Button from "../components/form-ui/Button";
 import { toast } from "react-toastify";
 import ProductsService from "../services/Products.service";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const usePortal = () => {
   // States & Bindings
   const [show, setShow] = useState(false);
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
+  const auth = useSelector((state) => state.auth);
+  const user = auth?.user?.[0] || auth?.user || {};
 
   const INITIAL_VALUES = useMemo(
     () => ({ name: "", price: 0, description: "", image: "" }),
@@ -76,6 +82,7 @@ const usePortal = () => {
       const response = await ProductsService.getList({
         page,
         limit: pagination.limit,
+        email: user?.email,
       });
 
       // Append new products to the existing list
@@ -100,8 +107,11 @@ const usePortal = () => {
 
   // Initial load
   useEffect(() => {
-    fetchProducts(1);
-  }, []);
+    if (typeof user.email === "string") {
+      fetchProducts(1);
+      console.log("email exists", user.email);
+    }
+  }, [user]);
 
   const onPageChange = (page) => {
     fetchProducts(page);

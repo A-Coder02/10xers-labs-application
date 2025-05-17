@@ -25,7 +25,7 @@ const Register = () => {
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
     role: Yup.string()
-      .oneOf(["admin", "customer"], "Select a valid role")
+      .oneOf(["admin", "user"], "Select a valid role")
       .required("Role is required"),
   });
 
@@ -33,7 +33,7 @@ const Register = () => {
   const initialValues = {
     email: "",
     password: "",
-    role: "customer",
+    role: "user",
   };
 
   // Form submission handler
@@ -85,7 +85,7 @@ const Register = () => {
               name="role"
               options={[
                 { value: "admin", label: "Admin" },
-                { value: "customer", label: "Customer" },
+                { value: "user", label: "User" },
               ]}
             />
             <Button
