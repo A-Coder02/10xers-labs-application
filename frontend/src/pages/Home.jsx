@@ -3,8 +3,11 @@ import React from "react";
 import Card from "../components/Card";
 import useProducts from "../hooks/useProducts";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const ctx = useSelector((state) => state.auth);
+  console.log({ ctx });
   const { list, loading, hasMore, loadMore } = useProducts();
   console.log({ hasMore, loadMore });
 

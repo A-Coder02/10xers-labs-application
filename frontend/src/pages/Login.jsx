@@ -8,10 +8,13 @@ import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import AuthService from "../services/Auth.service";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setTokens, setUser } from "../store/auth.slice";
 
 const Login = () => {
-  // States
+  // States & Hooks
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // Validation schema
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -35,11 +38,13 @@ const Login = () => {
       setSubmitting(true);
       const response = await AuthService.login(values);
       console.log({ response });
-      if (response.status) {
+      if (response.status === true) {
         toast.success("Logged In");
         // todo: store tokens
         // todo: store user data
-        // navigate("/");
+        navigate("/");
+        dispatch(setUser(response.data));
+        dispatch(setTokens(response.tokens));
       } else {
         toast.error(response?.data?.error);
       }
