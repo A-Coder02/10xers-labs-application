@@ -45,41 +45,25 @@ const getProducts = async (req, res) => {
   /* #swagger.tags = ['Products'] */
 
   try {
-    const { page = 1, limit = 10, email } = req.query;
+    const { page = 1, limit = 10, id } = req.query;
     const currentPage = parseInt(page, 10);
     const pageSize = parseInt(limit, 10);
     const offset = (currentPage - 1) * pageSize;
 
-    let countQuery = supabase
-      .from("products")
-      .select("*, user_id(id, email)", { count: "exact", head: true });
-
-    if (email) {
-      countQuery = countQuery.eq("user_id.email", email);
-    }
-
-    const { count, error: countError } = await countQuery;
-    if (countError) {
-      return res.status(500).json({ data: null, error: countError.message });
-    }
-
-    const totalPages = Math.ceil(count / pageSize);
-
     let query = supabase
       .from("products")
-      .select("id, name, img_url, description, price, user_id")
+      .select("id, name, img_url, description, price, user_id", {
+        count: "exact",
+      })
       .range(offset, offset + pageSize - 1);
 
-    if (email) {
-      const userQuery = await supabase
-        .from("users")
-        .select("id")
-        .eq("email", email)
-        .single();
-      query = query.eq("user_id", userQuery.data.id);
+    if (id) {
+      query = query.eq("user_id", id);
     }
 
-    const { data, error } = await query;
+    const { data, error, count } = await query;
+
+    const totalPages = Math.ceil(count / pageSize);
 
     if (error) {
       return res.status(500).json({ data: null, error: error.message });

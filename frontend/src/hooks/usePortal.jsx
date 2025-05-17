@@ -80,7 +80,7 @@ const usePortal = () => {
       const response = await ProductsService.getList({
         page,
         limit: pagination.limit,
-        email: user?.email,
+        user_id: user?.id,
       });
 
       // Append new products to the existing list
@@ -105,9 +105,9 @@ const usePortal = () => {
 
   // Initial load
   useEffect(() => {
-    if (typeof user.email === "string") {
+    if (typeof user.id === "string") {
       fetchProducts(1);
-      console.log("email exists", user.email);
+      console.log("user_id exists", user.id);
     }
   }, [user]);
 

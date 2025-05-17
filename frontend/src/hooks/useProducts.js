@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import ProductsService from "../services/Products.service";
 import { toast } from "react-toastify";
 
-let flag = true;
-
 const useProducts = () => {
   // States & Binding
   const [rows, setRows] = useState([]);
@@ -50,8 +48,7 @@ const useProducts = () => {
 
   // Initial load
   useEffect(() => {
-    if (flag) fetchProducts(1, true);
-    flag = false;
+    fetchProducts(1, true);
   }, []);
 
   // Load more products

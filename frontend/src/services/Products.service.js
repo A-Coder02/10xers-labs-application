@@ -3,12 +3,12 @@ import { productsUrl } from "../utils/urls";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
 
-const getList = async ({ page, limit, email }) => {
+const getList = async ({ page, limit, id }) => {
   const params = {
     page,
     limit,
   };
-  if (email) params.email = email;
+  if (id) params.id = id;
   try {
     const response = await axiosInstance.get(`${productsUrl}`, {
       params,

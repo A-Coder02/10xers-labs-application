@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const { generateTokens, verifyToken } = require("../utils/auth");
+const { generateTokens } = require("../utils/auth");
 const supabase = require("../supabase");
 
 const allowedRoles = ["admin", "user"];
@@ -45,13 +45,14 @@ const registerUser = async (req, res) => {
     const { data, error } = await supabase
       .from("users")
       .insert([{ email, password: hashedPassword, role }])
-      .select();
+      .select()
+      .single();
 
     if (error)
       return res.status(500).json({ error: error.message, status: false });
 
     // Generate tokens right after registration
-    const tokens = generateTokens({ email, role });
+    const tokens = generateTokens({ email, role, id: data.id });
 
     res.status(201).json({
       message: "User registered successfully",
@@ -95,7 +96,7 @@ const loginUser = async (req, res) => {
         .json({ error: "Invalid credentials", status: false });
 
     // Generate tokens
-    const tokens = generateTokens({ email, role: data.role });
+    const tokens = generateTokens({ email, role: data.role, id: data.id });
     res.status(200).json({
       data: { id: data.id, email: data.email, role: data.role },
       tokens,
