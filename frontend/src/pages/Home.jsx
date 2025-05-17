@@ -2,11 +2,38 @@ import React from "react";
 // Components
 import Card from "../components/Card";
 import useProducts from "../hooks/useProducts";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Home = () => {
-  const { list, loading } = useProducts();
+  const { list, loading, hasMore, loadMore } = useProducts();
+  console.log({ hasMore, loadMore });
 
-  if (loading) return <h1 className="text-center">Loading Products....</h1>;
+  return (
+    <section className=" flex flex-col p-4 ">
+      <h1 className="font-medium mb-4">Products For You</h1>
+      <div className="overflow-auto h-[calc(100vh-11.5rem)]" id="scrollableDiv">
+        <InfiniteScroll
+          dataLength={list.length} // This is important field to render the next data
+          next={loadMore} // Function to load more data
+          hasMore={hasMore} // Condition to check if more data is available
+          loader={<h4 className="text-center ">Loading more...</h4>}
+          className="grid grid-cols-1 md:grid-cols-3 gap-4"
+          scrollableTarget="scrollableDiv"
+        >
+          {list.map((row) => (
+            <Card
+              key={row.id}
+              name={row.name}
+              price={row.price}
+              id={row.id}
+              description={row.description}
+              image={row.img_url}
+            />
+          ))}
+        </InfiniteScroll>
+      </div>
+    </section>
+  );
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-3 gap-4">

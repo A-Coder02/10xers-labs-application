@@ -15,8 +15,6 @@ import Modal from "./layout-ui/Modal";
 const Card = ({ id, price, name, image, description }) => {
   const [show, setShow] = useState(false);
 
-  console.log({ image });
-
   /**
    * Opens the modal by setting the state to true.
    */

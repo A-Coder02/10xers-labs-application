@@ -6,32 +6,66 @@ const useProducts = () => {
   // States & Binding
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
   const [pagination, setPagination] = useState({
-    limit: 10,
+    limit: 4,
     page: 1,
     totalItems: 0,
     totalPages: 1,
   });
 
-  useEffect(() => {
+  // Fetch products based on the current page
+  const fetchProducts = async (page) => {
     setLoading(true);
-    ProductsService.getList()
-      .then((response) => {
-        setRows(response.data);
-        setPagination(response.pagination);
-      })
-      .catch((err) => {
-        console.log("error: ", err);
-        toast.error(err.message);
-      })
-      .finally(() => {
-        setLoading(false);
+    try {
+      const response = await ProductsService.getList({
+        page,
+        limit: pagination.limit,
       });
+
+      // Append new products to the existing list
+      setRows((prev) => [...prev, ...response.data]);
+      console.log({
+        page: page,
+        totalItems: response.pagination.totalItems,
+        totalPages: response.pagination.totalPages,
+      });
+      setPagination((prev) => ({
+        ...prev,
+        page: page,
+        totalItems: response.pagination.totalItems,
+        totalPages: response.pagination.totalPages,
+      }));
+
+      // Check if more products are available
+      setHasMore(page < response.pagination.totalPages);
+    } catch (err) {
+      console.error("error: ", err);
+      toast.error(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Initial load
+  useEffect(() => {
+    fetchProducts(1);
   }, []);
+
+  // Load more products
+  const loadMore = () => {
+    if (pagination.page < pagination.totalPages) {
+      fetchProducts(pagination.page + 1);
+    } else {
+      setHasMore(false);
+    }
+  };
 
   return {
     list: rows,
     loading,
+    hasMore,
+    loadMore,
   };
 };
 
