@@ -17,11 +17,15 @@ const authSlice = createSlice({
     setTokens: (state, action) => {
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
+      sessionStorage.setItem("accessToken", state.accessToken);
+      sessionStorage.setItem("refreshToken", state.refreshToken);
     },
     clearAuth: (state) => {
       state.user = null;
       state.accessToken = null;
       state.refreshToken = null;
+      sessionStorage.removeItem("accessToken");
+      sessionStorage.removeItem("refreshToken");
     },
   },
 });
