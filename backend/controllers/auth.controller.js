@@ -3,8 +3,24 @@ const { generateTokens, verifyToken } = require("../utils/auth");
 const supabase = require("../supabase");
 
 const allowedRoles = ["admin", "user"];
-
+/**
+ * @swagger
+ * tags:
+ *   name: Auth
+ *   description: Auth APIs
+ */
 const registerUser = async (req, res) => {
+  /* #swagger.tags = ['Users']
+    #swagger.description = 'Update term and condition config'
+    #swagger.parameters['body'] = {
+        in: 'body',
+        schema: {
+            email: "",
+            password: "",
+            role: ""
+        }
+    }
+        */
   const { email, password, role } = req.body;
 
   // Validate role
@@ -44,6 +60,15 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
+  /* #swagger.tags = ['Users']
+    #swagger.parameters['body'] = {
+        in: 'body',
+        schema: {
+            email: "",
+            password: "",
+        }
+    }
+        */
   const { email, password } = req.body;
 
   try {
@@ -71,6 +96,7 @@ const loginUser = async (req, res) => {
 };
 
 const getAccessToken = (req, res) => {
+  // #swagger.tags = ['Users']
   const { refreshToken } = req.body;
 
   try {

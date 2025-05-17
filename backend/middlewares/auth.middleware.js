@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-// Secret key (use env variable in real apps)
-const ACCESS_TOKEN_SECRET =
-  process.env.ACCESS_TOKEN_SECRET || "your_access_token_secret";
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
 const authMiddleware = (req, res, next) => {
   // Get token from header "Authorization: Bearer <token>"

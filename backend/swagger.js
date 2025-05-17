@@ -1,22 +1,17 @@
-// swagger.js
-const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerAutogen = require("swagger-autogen")();
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "Express API",
-      version: "1.0.0",
-      description: "API documentation for the Express application",
-    },
-    servers: [
-      {
-        url: "http://localhost:3000",
-      },
-    ],
+const doc = {
+  info: {
+    title: "My API",
+    description: "Description",
   },
-  apis: ["./routes/*.js", "./controllers/*.js"], // Adjust according to your file structure
+  host: "localhost:8000",
 };
 
-const swaggerSpecs = swaggerJsdoc(options);
-module.exports = swaggerSpecs;
+const outputFile = "./swagger-output.json";
+const routes = ["app.js"];
+
+/* NOTE: If you are using the express Router, you must pass in the 'routes' only the 
+root file where the route starts, such as index.js, app.js, routes.js, etc ... */
+
+swaggerAutogen(outputFile, routes, doc);
