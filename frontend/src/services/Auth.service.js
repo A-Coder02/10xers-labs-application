@@ -1,8 +1,8 @@
 import axios from "axios";
-import { loginUrl } from "../utils/urls";
+import { loginUrl, registerUrl } from "../utils/urls";
 import { toast } from "react-toastify";
 
-const login = (body) => {
+const login = async (body) => {
   return axios
     .post(loginUrl, body)
     .then((res) => res.data)
@@ -14,6 +14,19 @@ const login = (body) => {
     });
 };
 
+const register = async (body) => {
+  return axios
+    .post(registerUrl, body)
+    .then((res) => res.data)
+    .catch((error) => {
+      toast.error(
+        error.message || error.response.message || "Something went wrong"
+      );
+      return error.response;
+    });
+};
+
 export default {
   login,
+  register,
 };

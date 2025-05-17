@@ -4,11 +4,18 @@ import TextField from "../components/form-ui/TextField";
 import Button from "../components/form-ui/Button";
 import Select from "../components/form-ui/Select";
 import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // others
 import * as Yup from "yup";
+import AuthService from "../services/Auth.service";
+import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { setTokens, setUser } from "../store/auth.slice";
 
 const Register = () => {
+  // States & Hooks
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   // Validation schema
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -18,7 +25,7 @@ const Register = () => {
       .min(6, "Password must be at least 6 characters")
       .required("Password is required"),
     role: Yup.string()
-      .oneOf(["ADMIN", "CUSTOMER"], "Select a valid role")
+      .oneOf(["admin", "customer"], "Select a valid role")
       .required("Role is required"),
   });
 
@@ -26,12 +33,30 @@ const Register = () => {
   const initialValues = {
     email: "",
     password: "",
-    role: "CUSTOMER",
+    role: "customer",
   };
 
   // Form submission handler
-  const onSubmit = (values) => {
-    console.log("Form data", values);
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      console.log("Form data", values);
+      setSubmitting(true);
+      const response = await AuthService.register(values);
+      console.log({ response });
+      if (response.status === true) {
+        navigate("/");
+        toast.success("Welcome!");
+
+        dispatch(setUser(response.data));
+        dispatch(setTokens(response.tokens));
+      } else {
+        toast.error(response?.data?.error);
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -59,8 +84,8 @@ const Register = () => {
               label="Role"
               name="role"
               options={[
-                { value: "ADMIN", label: "Admin" },
-                { value: "CUSTOMER", label: "Customer" },
+                { value: "admin", label: "Admin" },
+                { value: "customer", label: "Customer" },
               ]}
             />
             <Button

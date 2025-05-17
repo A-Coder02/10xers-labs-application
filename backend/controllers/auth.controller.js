@@ -25,13 +25,16 @@ const registerUser = async (req, res) => {
 
   // Validate role
   if (!allowedRoles.includes(role)) {
-    return res
-      .status(400)
-      .json({ error: "Invalid role. Allowed roles: admin, user." });
+    return res.status(400).json({
+      error: "Invalid role. Allowed roles: admin, user.",
+      status: false,
+    });
   }
 
   if (!email || !password) {
-    return res.status(400).json({ error: "Email and password are required" });
+    return res
+      .status(400)
+      .json({ error: "Email and password are required", status: false });
   }
 
   try {
@@ -44,7 +47,8 @@ const registerUser = async (req, res) => {
       .insert([{ email, password: hashedPassword, role }])
       .select();
 
-    if (error) return res.status(500).json({ error: error.message });
+    if (error)
+      return res.status(500).json({ error: error.message, status: false });
 
     // Generate tokens right after registration
     const tokens = generateTokens({ email, role });
@@ -53,9 +57,10 @@ const registerUser = async (req, res) => {
       message: "User registered successfully",
       data,
       tokens, // send access_token and refresh_token here
+      status: true,
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message, status: false });
   }
 };
 

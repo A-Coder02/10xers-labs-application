@@ -39,7 +39,6 @@ const Login = () => {
       const response = await AuthService.login(values);
       console.log({ response });
       if (response.status === true) {
-        toast.success("Logged In");
         // todo: store tokens
         // todo: store user data
         navigate("/");
