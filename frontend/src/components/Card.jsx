@@ -15,6 +15,8 @@ import Modal from "./layout-ui/Modal";
 const Card = ({ id, price, name, image, description }) => {
   const [show, setShow] = useState(false);
 
+  console.log({ image });
+
   /**
    * Opens the modal by setting the state to true.
    */
@@ -30,7 +32,7 @@ const Card = ({ id, price, name, image, description }) => {
       >
         <img
           src={image}
-          className="h-48 bg-gray-100 border-transparent"
+          className="bg-gray-100 border-transparent w-full aspect-square"
           alt=""
         />
         <div className="flex justify-between px-2">
@@ -43,7 +45,10 @@ const Card = ({ id, price, name, image, description }) => {
           <p className="font-medium">{name}</p>
           <p>Rs.{price}</p>
         </div>
-        <img src={image} className="bg-slate-100 my-4 aspect-video w-full" />
+        <img
+          src={image}
+          className="bg-slate-100 my-4 aspect-video object-contain w-full"
+        />
         <p>{description}</p>
       </Modal>
     </>

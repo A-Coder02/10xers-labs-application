@@ -1,10 +1,12 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import LayoutWrapper from "./LayoutWrapper";
+import { ToastContainer } from "react-toastify";
+// Pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Portal from "./pages/Portal";
-import LayoutWrapper from "./LayoutWrapper";
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
           </Route>
         </Routes>
       </Router>
+      <ToastContainer />
     </div>
   );
 };
