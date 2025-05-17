@@ -3,11 +3,15 @@ import React from "react";
 import { Formik, Form } from "formik";
 import TextField from "../components/form-ui/TextField";
 import Button from "../components/form-ui/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // others
 import * as Yup from "yup";
+import AuthService from "../services/Auth.service";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  // States
+  const navigate = useNavigate();
   // Validation schema
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -25,8 +29,25 @@ const Login = () => {
   };
 
   // Form submission handler
-  const onSubmit = (values) => {
-    console.log("Form data", values);
+  const onSubmit = async (values, { setSubmitting }) => {
+    try {
+      console.log("Form data", values);
+      setSubmitting(true);
+      const response = await AuthService.login(values);
+      console.log({ response });
+      if (response.status) {
+        toast.success("Logged In");
+        // todo: store tokens
+        // todo: store user data
+        // navigate("/");
+      } else {
+        toast.error(response?.data?.error);
+      }
+    } catch (error) {
+      console.log("error: ", error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

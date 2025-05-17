@@ -79,19 +79,25 @@ const loginUser = async (req, res) => {
       .single();
 
     if (error || !data)
-      return res.status(400).json({ error: "Invalid credentials" });
+      return res
+        .status(400)
+        .json({ error: "Invalid credentials", status: false });
 
     const isMatch = await bcrypt.compare(password, data.password);
-    if (!isMatch) return res.status(401).json({ error: "Invalid credentials" });
+    if (!isMatch)
+      return res
+        .status(401)
+        .json({ error: "Invalid credentials", status: false });
 
     // Generate tokens
     const tokens = generateTokens({ email, role: data.role });
     res.status(200).json({
       data: { id: data.id, email: data.email, role: data.role },
       tokens,
+      status: true,
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: err.message, status: false });
   }
 };
 
