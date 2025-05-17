@@ -11,7 +11,7 @@ const Header = () => {
   const auth = useSelector((state) => state.auth);
   const [show, setShow] = useState(false);
   console.log({ auth });
-  const user = auth?.user?.[0] || {};
+  const user = auth?.user?.[0] || auth?.user || {};
   const logoutHandler = () => {
     dispatch(clearAuth());
     navigate("/login");
