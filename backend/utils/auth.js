@@ -1,15 +1,12 @@
 const jwt = require("jsonwebtoken");
 
-// Generate Access and Refresh Tokens
+// Generate Access
 const generateTokens = (payload) => {
   const accessToken = jwt.sign(payload, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRATION,
   });
-  const refreshToken = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: process.env.REFRESH_EXPIRATION,
-  });
 
-  return { accessToken, refreshToken };
+  return { accessToken };
 };
 
 // Verify Token

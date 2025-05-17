@@ -1,6 +1,7 @@
 import axios from "axios";
 import { productsUrl } from "../utils/urls";
 import { toast } from "react-toastify";
+import axiosInstance from "../utils/axiosInstance";
 
 const getList = async ({ page, limit, email }) => {
   const params = {
@@ -9,7 +10,7 @@ const getList = async ({ page, limit, email }) => {
   };
   if (email) params.email = email;
   try {
-    const response = await axios.get(`${productsUrl}`, {
+    const response = await axiosInstance.get(`${productsUrl}`, {
       params,
     });
     return response.data;
@@ -20,7 +21,7 @@ const getList = async ({ page, limit, email }) => {
 
 const post = async (body) => {
   try {
-    const response = await axios.post(productsUrl, body);
+    const response = await axiosInstance.post(productsUrl, body);
     return response.data;
   } catch (error) {
     toast.error(error.message || "Something went wrong");
@@ -29,7 +30,7 @@ const post = async (body) => {
 
 const put = async (body, id) => {
   try {
-    const response = await axios.put(`${productsUrl}/${id}`, body);
+    const response = await axiosInstance.put(`${productsUrl}/${id}`, body);
     return response.data;
   } catch (error) {
     toast.error(error.message || "Something went wrong");
@@ -38,7 +39,7 @@ const put = async (body, id) => {
 
 const remove = async (id) => {
   try {
-    const response = await axios.delete(`${productsUrl}/${id}`);
+    const response = await axiosInstance.delete(`${productsUrl}/${id}`);
     return response.data;
   } catch (error) {
     toast.error(error.message || "Something went wrong");

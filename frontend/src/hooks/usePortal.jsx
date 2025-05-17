@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import Button from "../components/form-ui/Button";
 import { toast } from "react-toastify";
 import ProductsService from "../services/Products.service";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const usePortal = () => {
@@ -11,7 +10,6 @@ const usePortal = () => {
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
   const user = auth?.user?.[0] || auth?.user || {};
 

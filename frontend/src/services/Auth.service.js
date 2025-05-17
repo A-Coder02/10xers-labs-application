@@ -1,9 +1,10 @@
 import axios from "axios";
 import { loginUrl, registerUrl } from "../utils/urls";
 import { toast } from "react-toastify";
+import axiosInstance from "../utils/axiosInstance";
 
 const login = async (body) => {
-  return axios
+  return axiosInstance
     .post(loginUrl, body)
     .then((res) => res.data)
     .catch((error) => {
@@ -15,7 +16,7 @@ const login = async (body) => {
 };
 
 const register = async (body) => {
-  return axios
+  return axiosInstance
     .post(registerUrl, body)
     .then((res) => res.data)
     .catch((error) => {

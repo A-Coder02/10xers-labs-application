@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ProductsService from "../services/Products.service";
 import { toast } from "react-toastify";
 
+let flag = true;
+
 const useProducts = () => {
   // States & Binding
   const [rows, setRows] = useState([]);
@@ -24,22 +26,20 @@ const useProducts = () => {
       });
 
       // Append new products to the existing list
-      if (isFirstTime) setRows(response.data);
-      else setRows((prev) => [...prev, ...response.data]);
-      console.log({
-        page: page,
-        totalItems: response.pagination.totalItems,
-        totalPages: response.pagination.totalPages,
-      });
-      setPagination((prev) => ({
-        ...prev,
-        page: page,
-        totalItems: response.pagination.totalItems,
-        totalPages: response.pagination.totalPages,
-      }));
+      if (response?.data) {
+        if (isFirstTime) setRows(response?.data);
+        else setRows((prev) => [...prev, ...response.data]);
 
-      // Check if more products are available
-      setHasMore(page < response.pagination.totalPages);
+        setPagination((prev) => ({
+          ...prev,
+          page: page,
+          totalItems: response.pagination.totalItems,
+          totalPages: response.pagination.totalPages,
+        }));
+
+        // Check if more products are available
+        setHasMore(page < response.pagination.totalPages);
+      }
     } catch (err) {
       console.error("error: ", err);
       toast.error(err.message);
@@ -50,7 +50,8 @@ const useProducts = () => {
 
   // Initial load
   useEffect(() => {
-    fetchProducts(1, true);
+    if (flag) fetchProducts(1, true);
+    flag = false;
   }, []);
 
   // Load more products

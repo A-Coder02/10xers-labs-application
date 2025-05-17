@@ -56,7 +56,7 @@ const registerUser = async (req, res) => {
     res.status(201).json({
       message: "User registered successfully",
       data,
-      tokens, // send access_token and refresh_token here
+      tokens, // send access_token
       status: true,
     });
   } catch (err) {
@@ -106,24 +106,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-const getAccessToken = (req, res) => {
-  // #swagger.tags = ['Users']
-  const { refreshToken } = req.body;
-
-  try {
-    const decoded = verifyToken(refreshToken, "refresh");
-    const newTokens = generateTokens({
-      email: decoded.email,
-      role: decoded.role,
-    });
-    res.status(200).json(newTokens);
-  } catch (error) {
-    res.status(403).json({ error: "Invalid or expired refresh token" });
-  }
-};
-
 module.exports = {
   registerUser,
   loginUser,
-  getAccessToken,
 };

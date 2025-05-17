@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const ctx = useSelector((state) => state.auth);
-  console.log({ ctx });
   const { list, loading, hasMore, loadMore } = useProducts();
   console.log({ hasMore, loadMore });
 
