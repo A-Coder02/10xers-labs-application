@@ -1,5 +1,10 @@
 # Online Store Frontend
 
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+
 This is the frontend web application for an **Online Store** that sells mobile phones.  
 It is built using **React**, **Redux Toolkit**, **Tailwind CSS**, and **Vite**.
 
@@ -84,7 +89,7 @@ This project is part of a FullStack Developer Technical Task to design a web app
 
 2. Install dependencies
 
-## Frontend
+**Frontend**
 
 ```bash
 cd frontend
@@ -93,7 +98,7 @@ npm install
 yarn install
 ```
 
-## Backend
+**Backend**
 
 ```bash
 cd backend
@@ -104,7 +109,7 @@ yarn install
 
 3. Start the development server
 
-## Frontend
+**Frontend**
 
 ```bash
 npm run dev
@@ -112,13 +117,13 @@ npm run dev
 yarn dev
 ```
 
-# To make build
+**To make build**
 
 ```bash
 npm run build
 ```
 
-## Backend
+**Backend**
 
 ```bash
 npm run start
@@ -126,7 +131,7 @@ npm run start
 yarn start
 ```
 
-# To generate Swagger docs
+**To generate Swagger docs**
 
 ```bash
    npm run swagger
@@ -135,15 +140,15 @@ yarn start
 ```
 
 5. Open your browser at
-   # frontend
+   **frontend**
    ```
    http://localhost:5173
    ```
-   # backend
+   **backend**
    ```
    http://localhost:8000/
    ```
-   # To See Swagger docs
+   **To See Swagger docs**
 
 ```
    http://localhost:8000/docs
