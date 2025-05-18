@@ -9,7 +9,7 @@ import React from "react";
  */
 const TableHeader = ({ columns = [] }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 min-w-fit">
       <div className="p-4 bg-white border border-slate-400 !border-solid">
         <div className="flex">
           {columns.map((column, index) => (

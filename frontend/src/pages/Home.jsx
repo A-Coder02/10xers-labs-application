@@ -8,12 +8,12 @@ const Home = () => {
   const { list, loading, hasMore, loadMore } = useProducts();
 
   return (
-    <section className=" flex flex-col p-4 ">
+    <section className=" flex flex-col">
       <h1 className="font-medium mb-4">
         Products For You {loading && "(Loading...)"}
       </h1>
       <div
-        className="overflow-auto h-[calc(100vh-11.5rem)]"
+        className="overflow-auto h-[calc(100vh-8.5rem)] md:h-[calc(100vh-11.5rem)]"
         data-testid="scrollableDiv"
         id="scrollableDiv"
       >

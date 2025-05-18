@@ -21,12 +21,12 @@ const Header = () => {
   return (
     <header className="flex gap-4 items-center sticky top-0 z-50 py-2 px-4 bg-white border-b border-b-slate-400 pb-3">
       <div
-        className="font-medium text-2xl mr-auto cursor-pointer"
+        className="font-medium md:text-2xl mr-auto cursor-pointer"
         onClick={() => navigate("/")}
       >
-        Brand.
+        MobiWiki
       </div>
-      <div className="text-slate-800">
+      <div className="text-slate-800 hidden md:block">
         Hi <span className="font-medium">{user.email}!</span>
       </div>
       {isAdmin && (
@@ -34,11 +34,13 @@ const Header = () => {
           Go to Portal
         </Button>
       )}
-      {location.pathname === "/portal" && (
-        <Button size="sm" onClick={() => navigate("/")}>
-          Home
-        </Button>
-      )}
+      <div className="hidden md:block">
+        {location.pathname === "/portal" && (
+          <Button size="sm" onClick={() => navigate("/")}>
+            Home
+          </Button>
+        )}
+      </div>
 
       <Button size="sm" onClick={() => setShow(true)} variant="outlined">
         Logout
@@ -46,7 +48,7 @@ const Header = () => {
 
       <Modal show={show} setShow={setShow} title="Oh! Sure?">
         <div className="flex flex-col items-end">
-          <p className="w-full text-left">You want log out?</p>
+          <p className="w-full text-left mb-8">You want log out?</p>
           <Button onClick={logoutHandler}>Damn, Sure!</Button>
         </div>
       </Modal>

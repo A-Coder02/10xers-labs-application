@@ -24,7 +24,7 @@ const Modal = ({ show, setShow, title, children, loading = false }) => {
       onClick={() => !loading && setShow(false)}
     >
       <div
-        className="bg-white px-4 py-3 shadow-md w-96 relative"
+        className="bg-white px-4 py-3 shadow-md w-[90%] md:w-96 relative"
         // Prevent click propagation to avoid closing when clicking inside modal
         onClick={(e) => e.stopPropagation()}
       >

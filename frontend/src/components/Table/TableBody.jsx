@@ -16,7 +16,7 @@ const TableBody = ({ columns, rows, loading = false }) => {
         rows.map((row) => (
           <div
             key={row.id}
-            className="p-4 bg-white border-b border-b-slate-400 !border-solid"
+            className="p-4 bg-white border-b border-b-slate-400 !border-solid min-w-fit"
           >
             <div className="flex">
               {columns.map((column, index) => (

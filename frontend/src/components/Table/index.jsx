@@ -21,7 +21,7 @@ const Table = ({
   onPageChange = () => {},
 }) => {
   return (
-    <div className="flex-1 flex flex-col relative">
+    <div className="flex-1 flex flex-col relative max-w-full overflow-auto">
       <TableHeader columns={columns} />
       <div className="flex-1 relative py-2">
         <div className="">

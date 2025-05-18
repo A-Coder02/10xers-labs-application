@@ -49,7 +49,7 @@ const LayoutWrapper = () => {
   return (
     <div className="flex flex-col flex-1 h-full">
       <Header />
-      <main className="my-4 px-4 flex-1 flex flex-col">
+      <main className="my-2 md:my-4 px-4 md:px-4 flex-1 flex flex-col">
         <Outlet />
       </main>
     </div>
