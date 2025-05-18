@@ -151,11 +151,23 @@ npm run build
 
 ---
 
-6. Testing
+## Testing
 
 ```bash
 npm run test
 ```
+
+## Project Structure
+
+- src/
+  - assets /
+  - components /
+  - hooks /
+  - pages /
+  - services /
+  - stores /
+  - tests /
+  - utils /
 
 ---
 
