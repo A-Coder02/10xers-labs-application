@@ -13,7 +13,10 @@ This is the frontend web application for an **Online Store** that sells mobile p
 It is built using **React**, **Redux Toolkit**, **Tailwind CSS**, and **Vite**.
 
 ---
-
+### Requested Loom links are below
+Here are the Loom links you requested.  
+⬇️ [Find them below](https://github.com/A-Coder02/10xers-labs-application?tab=readme-ov-file#demo-video):
+---
 ## Project Overview
 
 This project is part of a FullStack Developer Technical Task to design a web application for an online store that sells mobile phones and manages products. The app includes:
