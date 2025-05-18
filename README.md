@@ -50,12 +50,18 @@ This project is part of a FullStack Developer Technical Task to design a web app
 - Jest & React Testing Library for testing
 - Vite for fast dev server and bundling
 
-### Backend (Assumed)
+### Backend
 
-- Node.js with Express
-- PostgreSQL relational database
-- JWT-based authentication and role authorization
-- RESTful API design with Swagger documentation
+- Node.js with Express framework
+- PostgreSQL relational database for data storage
+- JWT-based authentication and role-based authorization
+- RESTful API design following best practices
+- Swagger for API documentation and testing
+- Nodemon for automatic server restarts during development
+- Jest and Supertest for unit and integration testing
+- Environment variable management with dotenv
+- CORS middleware for cross-origin resource sharing
+- Password hashing with bcryptjs
 
 ---
 
@@ -78,37 +84,74 @@ This project is part of a FullStack Developer Technical Task to design a web app
 
 2. Install dependencies
 
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+## Frontend
 
-3. Create a `.env` file in the root (optional) to configure environment variables
+```bash
+cd frontend
+npm install
+# or
+yarn install
+```
 
-   Example `.env`:
+## Backend
 
-   ```
-   VITE_API_URL=http://localhost:8000/
-   ```
+```bash
+cd backend
+npm install
+# or
+yarn install
+```
 
-4. Start the development server
+3. Start the development server
 
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+## Frontend
+
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+# To make build
+
+```bash
+npm run build
+```
+
+## Backend
+
+```bash
+npm run start
+# r
+yarn start
+```
+
+# To generate Swagger docs
+
+```bash
+   npm run swagger
+   #or
+   yarn swagger
+```
 
 5. Open your browser at
-
+   # frontend
    ```
    http://localhost:5173
    ```
+   # backend
+   ```
+   http://localhost:8000/
+   ```
+   # To See Swagger docs
+
+```
+   http://localhost:8000/docs
+```
 
 ---
 
-## Available Scripts
+## Available Scripts (Frontend)
 
 | Script            | Description                          |
 | ----------------- | ------------------------------------ |
@@ -120,11 +163,19 @@ This project is part of a FullStack Developer Technical Task to design a web app
 
 ---
 
+## Available Scripts (Backend)
+
+| Script            | Description                              |
+| ----------------- | ---------------------------------------- |
+| `npm start`       | Starts the backend server with nodemon   |
+| `npm run swagger` | Generates Swagger API documentation      |
+| `npm test`        | Runs tests with Jest in test environment |
+
 ## Testing
 
 Unit tests are written using Jest and React Testing Library.
 
-To run tests:
+To run tests (for both Frontend & Backend):
 
 ```bash
 npm run test
