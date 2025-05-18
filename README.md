@@ -91,9 +91,11 @@ This project is part of a FullStack Developer Technical Task to design a web app
    cd 10xers-labs-application
    ```
 
-2. Install dependencies
+---
 
-**Frontend**
+_Frontend_
+
+2. Install dependencies
 
 ```bash
 cd frontend
@@ -102,18 +104,7 @@ npm install
 yarn install
 ```
 
-**Backend**
-
-```bash
-cd backend
-npm install
-# or
-yarn install
-```
-
 3. Start the development server
-
-**Frontend**
 
 ```bash
 npm run dev
@@ -127,7 +118,45 @@ yarn dev
 npm run build
 ```
 
-**Backend**
+5. Open your browser at
+   ```
+   http://localhost:5173
+   ```
+
+---
+
+## Available Scripts
+
+| Script            | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Starts the dev server (Vite)         |
+| `npm run build`   | Builds the app for production        |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint`    | Run ESLint on source files           |
+| `npm run test`    | Run unit tests with Jest             |
+
+---
+
+6. Testing
+
+```bash
+npm run test
+```
+
+---
+
+_Backend_
+
+2. Install dependencies
+
+```bash
+cd backend
+npm install
+# or
+yarn install
+```
+
+3. Start the development server
 
 ```bash
 npm run start
@@ -144,33 +173,18 @@ yarn start
 ```
 
 5. Open your browser at
-   **frontend**
-   ```
-   http://localhost:5173
-   ```
+
    **backend**
+
    ```
    http://localhost:8000/
    ```
+
    **To See Swagger docs**
 
 ```
    http://localhost:8000/docs
 ```
-
----
-
-## Available Scripts (Frontend)
-
-| Script            | Description                          |
-| ----------------- | ------------------------------------ |
-| `npm run dev`     | Starts the dev server (Vite)         |
-| `npm run build`   | Builds the app for production        |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint`    | Run ESLint on source files           |
-| `npm run test`    | Run unit tests with Jest             |
-
----
 
 ## Available Scripts (Backend)
 
@@ -182,25 +196,19 @@ yarn start
 
 ## Testing
 
-Unit tests are written using Jest and React Testing Library.
-
-To run tests (for both Frontend & Backend):
-
 ```bash
 npm run test
 ```
 
 ## Project Structure
 
-src/
-├── assets/ # Static assets like images, fonts, icons
-├── components/ # Reusable React components
-├── pages/ # Page components mapped to routes
-├── hooks/ # Custom React hooks
-├── services/ # API calls and external service integrations
-├── store/ # Redux Toolkit slices and store setup
-├── tests/ # Unit and integration tests
-├── utils/ # Utility functions and helpers
+- backend/
+  - controller /
+  - middleware /
+  - routes /
+  - supabase /
+  - tests /
+  - utils /
 
 ## Notes
 
