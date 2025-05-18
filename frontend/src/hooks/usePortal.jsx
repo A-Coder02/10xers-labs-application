@@ -55,10 +55,16 @@ const usePortal = () => {
         flex: 1,
         renderCell: (data) => (
           <div className="flex gap-4">
-            <Button onClick={() => onClickEditButton(data)}>Update</Button>
+            <Button
+              onClick={() => onClickEditButton(data)}
+              data-testid={`update-btn-${data.id}`}
+            >
+              Update
+            </Button>
             <Button
               variant="outlined"
               onClick={() => onClickRemoveButton(data)}
+              data-testid={`remove-btn-${data.id}`}
             >
               Remove
             </Button>
@@ -72,6 +78,8 @@ const usePortal = () => {
   // Table states
 
   const [rows, setRows] = useState([]);
+  console.log({ rows });
+
   const [loadingRows, setLoadingRows] = useState(false);
   const [pagination, setPagination] = useState({
     limit: 4,

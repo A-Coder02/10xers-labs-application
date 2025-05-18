@@ -31,7 +31,7 @@ const RemoveModal = ({
             isLoading={loading}
             onClick={() => onSubmit(initialValues)}
           >
-            Sure
+            Sure, I want
           </Button>
         </div>
       </div>
