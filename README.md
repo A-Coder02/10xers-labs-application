@@ -42,7 +42,7 @@ This project is part of a FullStack Developer Technical Task to design a web app
 
 - React 19
 - Redux Toolkit + React-Redux
-- React Router DOM v7 for routing
+- React Router DOM for routing
 - Tailwind CSS for styling
 - Formik + Yup for forms and validation
 - Axios for API communication
@@ -72,8 +72,8 @@ This project is part of a FullStack Developer Technical Task to design a web app
 1. Clone the repo
 
    ```bash
-   git clone https://github.com/yourusername/online-store-frontend.git
-   cd online-store-frontend
+   git clone https://github.com/A-Coder02/10xers-labs-application.git
+   cd 10xers-labs-application
    ```
 
 2. Install dependencies
@@ -89,7 +89,7 @@ This project is part of a FullStack Developer Technical Task to design a web app
    Example `.env`:
 
    ```
-   VITE_API_URL=http://localhost:5000/api
+   VITE_API_URL=http://localhost:8000/
    ```
 
 4. Start the development server
@@ -145,7 +145,7 @@ src/
 ## Notes
 
 - The frontend communicates with a backend API for authentication and product management.
-- Authentication state is managed using JWT tokens stored in `localStorage`.
+- Authentication state is managed using JWT tokens stored in `sessionStorage`.
 - Only users with the role **"admin"** can create, update, or delete products.
 - Customers can browse products without authentication.
 - Toast notifications inform users of success and error messages.
@@ -166,11 +166,11 @@ See the [LICENSE](LICENSE) file for details.
 
 ## Contact
 
-Created by **[Your Name]** – feel free to reach out!
+Created by **Arbaj Ansari** – feel free to reach out!
 
 - Email: arbaj897ansari@gmail.com
-- GitHub: [your-github-username](https://github.com/A-Coder02)
-- LinkedIn: [your-linkedin-profile](arbaj Ansari | LinkedIn)
+- GitHub: [A-Coder02](https://github.com/A-Coder02)
+- LinkedIn: [arbaj-dev](arbaj Ansari | LinkedIn)
 
 ---
 
