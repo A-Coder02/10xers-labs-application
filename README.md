@@ -1,11 +1,22 @@
 # Online Store
-
-- **src/components**: Contains reusable UI components.
-- **src/pages**: Each file here represents a full page or route.
-- **src/styles**: Holds styling files (CSS/SCSS).
-- **src/utils**: Helper functions used throughout the app.
-- **src/assets**: Static assets such as images and fonts.
-- **public**: Static files directly served without processing.
+```
+project
+│   README.md
+│   file001.txt    
+│
+└───folder1
+│   │   file011.txt
+│   │   file012.txt
+│   │
+│   └───subfolder1
+│       │   file111.txt
+│       │   file112.txt
+│       │   ...
+│   
+└───folder2
+    │   file021.txt
+    │   file022.txt
+```
 
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
