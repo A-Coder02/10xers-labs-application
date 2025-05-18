@@ -14,7 +14,6 @@ const authMiddleware = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    console.log({ decoded });
 
     // Query the user in the database
     const { data, error } = await supabase

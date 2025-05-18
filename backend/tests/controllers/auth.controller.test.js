@@ -2,14 +2,14 @@
 const {
   registerUser,
   loginUser,
-} = require("../controllers/auth.controller.js");
+} = require("../../controllers/auth.controller.js");
 const bcrypt = require("bcryptjs");
-const supabase = require("../supabase/index.js");
-const { generateTokens } = require("../utils/auth.js");
+const supabase = require("../../supabase/index.js");
+const { generateTokens } = require("../../utils/auth.js");
 
 jest.mock("bcryptjs");
-jest.mock("../supabase/index.js");
-jest.mock("../utils/auth");
+jest.mock("../../supabase/index.js");
+jest.mock("../../utils/auth");
 
 describe("Auth Controller", () => {
   let req, res;

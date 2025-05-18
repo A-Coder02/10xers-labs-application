@@ -34,10 +34,8 @@ const Login = () => {
   // Form submission handler
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log("Form data", values);
       setSubmitting(true);
       const response = await AuthService.login(values);
-      console.log({ response });
       if (response.status === true) {
         // todo: store tokens
         // todo: store user data

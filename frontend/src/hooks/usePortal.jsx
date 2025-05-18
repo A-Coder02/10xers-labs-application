@@ -78,7 +78,6 @@ const usePortal = () => {
   // Table states
 
   const [rows, setRows] = useState([]);
-  console.log({ rows });
 
   const [loadingRows, setLoadingRows] = useState(false);
   const [pagination, setPagination] = useState({
@@ -121,7 +120,6 @@ const usePortal = () => {
   useEffect(() => {
     if (typeof user.id === "string") {
       fetchProducts(1, user.id);
-      console.log("user_id exists", user.id);
     }
   }, [user]);
 

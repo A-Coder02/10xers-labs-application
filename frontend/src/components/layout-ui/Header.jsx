@@ -9,7 +9,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const auth = useSelector((state) => state.auth);
-  console.log({ auth });
   const [show, setShow] = useState(false);
   const location = useLocation();
   const user = auth?.user?.[0] || auth?.user || {};

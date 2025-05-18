@@ -39,10 +39,8 @@ const Register = () => {
   // Form submission handler
   const onSubmit = async (values, { setSubmitting }) => {
     try {
-      console.log("Form data", values);
       setSubmitting(true);
       const response = await AuthService.register(values);
-      console.log({ response });
       if (response.status === true) {
         navigate("/");
         toast.success("Welcome!");

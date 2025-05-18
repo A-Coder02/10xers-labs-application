@@ -5,10 +5,10 @@ const {
   getProductById,
   updateProduct,
   deleteProduct,
-} = require("../controllers/products.controller");
-const supabase = require("../supabase");
+} = require("../../controllers/products.controller");
+const supabase = require("../../supabase");
 
-jest.mock("../supabase");
+jest.mock("../../supabase");
 
 describe("Product Controller", () => {
   let req, res;

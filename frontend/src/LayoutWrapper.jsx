@@ -35,7 +35,6 @@ const LayoutWrapper = () => {
     // this allows only admin role based users only
     const checkUserIsAdminOrNot = () => {
       if (user && user?.role && location.pathname === "/portal") {
-        console.log({ userAccess: user.role });
         if (user.role !== "admin") {
           toast.warn(
             "Not Permissible to access portal via User Account, Please use Admin Account"
