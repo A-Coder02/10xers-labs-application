@@ -1,4 +1,5 @@
-require("dotenv").config();
+const envFile = process.env.NODE_ENV === "test" ? ".env.test" : ".env";
+require("dotenv").config({ path: envFile });
 const express = require("express");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
@@ -17,10 +18,22 @@ app.use(cors({ origin: "*" }));
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 app.use("/doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 // routes
-app.use("/hello", helloRouter);
-app.use("/auth", authRouter);
-app.use(authMiddleware);
-app.use("/products", productRouter);
+app.get("/check-health", (req, res) => {
+  res.status(200).json({ message: "Hello World!" });
+});
 
-const PORT = process.env.PORT;
-app.listen(PORT, console.log(`app is running on PORT:${PORT}`));
+app.post("/echo", (req, res) => {
+  res.status(200).json({ youSent: req.body });
+});
+app.use("/auth", authRouter);
+
+app.use("/products", authMiddleware, productRouter);
+
+if (process.env.NODE_ENV !== "test") {
+  const PORT = process.env.PORT || 8000;
+  app.listen(PORT, () => {
+    console.log(`app is running on PORT:${PORT}`);
+  });
+}
+
+module.exports = app;
