@@ -1,5 +1,12 @@
 # Online Store
 
+- **src/components**: Contains reusable UI components.
+- **src/pages**: Each file here represents a full page or route.
+- **src/styles**: Holds styling files (CSS/SCSS).
+- **src/utils**: Helper functions used throughout the app.
+- **src/assets**: Static assets such as images and fonts.
+- **public**: Static files directly served without processing.
+
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
@@ -13,10 +20,14 @@ This is the frontend web application for an **Online Store** that sells mobile p
 It is built using **React**, **Redux Toolkit**, **Tailwind CSS**, and **Vite**.
 
 ---
+
 ### Requested Loom links are below
+
 Here are the Loom links you requested.  
 ⬇️ [Find them below](https://github.com/A-Coder02/10xers-labs-application?tab=readme-ov-file#demo-video):
+
 ---
+
 ## Project Overview
 
 This project is part of a FullStack Developer Technical Task to design a web application for an online store that sells mobile phones and manages products. The app includes:
