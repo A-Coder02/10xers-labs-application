@@ -7,11 +7,21 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const Home = () => {
   const { list, loading, hasMore, loadMore } = useProducts();
 
+  const [isAscending, setIsAscending] = useState(false)
+
+  const sortedList = isAscending ? list.sort() : list.reverse()
+
   return (
     <section className=" flex flex-col">
+      <div className='flex justify-between' >
+
       <h1 className="font-medium mb-4">
         Products For You {loading && "(Loading...)"}
       </h1>
+
+    <Button onClick={()=>{ setIsAscending(!isAscending) }} >Change Sort : ${isAscending ? 'ASC': "DESC"}</Button>
+
+      </div>
       <div
         className="overflow-auto h-[calc(100vh-8.5rem)] md:h-[calc(100vh-11.5rem)]"
         data-testid="scrollableDiv"
@@ -25,7 +35,7 @@ const Home = () => {
           className="grid grid-cols-1 md:grid-cols-4 gap-4"
           scrollableTarget="scrollableDiv"
         >
-          {list.map((row) => (
+          {sortedList.map((row) => (
             <Card
               key={row.id}
               name={row.name}
