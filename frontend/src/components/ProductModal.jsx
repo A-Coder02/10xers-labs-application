@@ -64,7 +64,7 @@ const ProductModal = ({
                 {/* Price Field */}
                 <TextField
                   name="price"
-                  label="Price ($)"
+                  label="Price (Rs.)"
                   placeholder="e.g. 999"
                   type="number"
                   disabled={loading}
