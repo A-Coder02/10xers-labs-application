@@ -33,7 +33,7 @@ const Card = ({ id, price, name, image, description }) => {
           className="bg-gray-100 border-transparent w-full aspect-square"
           alt=""
         />
-        <div className="flex flex-col justify-center gap-4 px-2">
+        <div className="flex flex-col items-center gap-4 px-2">
           <p className="font-bold">{name}</p>
           <p>Rs. {price}</p>
         </div>
