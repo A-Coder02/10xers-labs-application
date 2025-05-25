@@ -10,7 +10,7 @@ const Home = () => {
 
   const [isAscending, setIsAscending] = React.useState(false)
 
-  const sortedList = isAscending ? list.sort() : list.reverse()
+  const sortedList = list.sort((a,b) => isAscending  ?  a.price - b.price : b.price - a.price)
 
   return (
     <section className=" flex flex-col">
@@ -20,7 +20,7 @@ const Home = () => {
         Products For You {loading && "(Loading...)"}
       </h1>
 
-    <Button onClick={()=>{ setIsAscending(!isAscending) }} >Change Sort : ${isAscending ? 'ASC': "DESC"}</Button>
+    <Button onClick={()=>{ setIsAscending(!isAscending) }} >Change Sort : {isAscending ? 'ASC': "DESC"}</Button>
 
       </div>
       <div
