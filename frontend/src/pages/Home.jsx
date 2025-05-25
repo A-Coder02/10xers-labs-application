@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 const Home = () => {
   const { list, loading, hasMore, loadMore } = useProducts();
 
-  const [isAscending, setIsAscending] = useState(false)
+  const [isAscending, setIsAscending] = React.useState(false)
 
   const sortedList = isAscending ? list.sort() : list.reverse()
 
