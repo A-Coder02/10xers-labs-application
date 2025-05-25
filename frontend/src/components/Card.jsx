@@ -33,14 +33,14 @@ const Card = ({ id, price, name, image, description }) => {
           className="bg-gray-100 border-transparent w-full aspect-square"
           alt=""
         />
-        <div className="flex justify-between px-2">
-          <p className="font-medium">{name}</p>
+        <div className="flex flex-col gap-4 px-2">
+          <p className="font-bold">{name}</p>
           <p>Rs. {price}</p>
         </div>
       </article>
       <Modal show={show} setShow={setShow} title={`#${id || 0}`}>
-        <div className="flex justify-between">
-          <p className="font-medium">{name}</p>
+        <div className="flex flex-col gap-4">
+          <p className="font-bold">{name}</p>
           <p>Rs.{price}</p>
         </div>
         <img

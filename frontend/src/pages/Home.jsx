@@ -41,7 +41,7 @@ const Home = () => {
   );
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <section className="grid grid-cols-1 md:grid-cols-4 gap-4">
       {/* Mapping fetched data */}
       {list.map((row) => (
         <Card
