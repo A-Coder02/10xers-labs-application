@@ -3,6 +3,7 @@ import React from "react";
 import Card from "../components/Card";
 import useProducts from "../hooks/useProducts";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Button from '../components/form-ui/Button.jsx'
 
 const Home = () => {
   const { list, loading, hasMore, loadMore } = useProducts();
